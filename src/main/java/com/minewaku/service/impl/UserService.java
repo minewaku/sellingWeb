@@ -22,5 +22,12 @@ public class UserService implements IUserService {
 	public List<UserModel> findByUserId(Long userId) {
 		return userDAO.findByUserId(userId);
 	}
+
+	@Override
+	public UserModel save(UserModel model) {
+		Long id = userDAO.save(model);
+		System.out.println(id);
+		return null;
+	}
 	
 }

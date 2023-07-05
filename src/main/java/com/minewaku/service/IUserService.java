@@ -7,5 +7,5 @@ import com.minewaku.model.UserModel;
 public interface IUserService {
 	List<UserModel> findAll();
 	List<UserModel> findByUserId(Long userId);
-	
+	UserModel save(UserModel model);
 }

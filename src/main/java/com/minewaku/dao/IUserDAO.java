@@ -7,4 +7,6 @@ import com.minewaku.model.UserModel;
 public interface IUserDAO extends GenericDAO<UserModel> {
 	List<UserModel> findAll();
 	List<UserModel> findByUserId(long userId);
+	Long save(UserModel model);
+	void update(UserModel model);
 }

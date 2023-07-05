@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Uoooogh Cnnyyyyyyy ToT</title>
+<title>Uoooogh Cnnyyyyyyy (ToT)</title>
 </head>
 <body>
 <h1>${model.username}</h1>

@@ -9,6 +9,7 @@ public class UserModel extends AbstractModel{
 	private long roleId;
 	private String username;
 	private String phone;
+	private String password;
 	private Date birthday;
 	private String gender;
 	private boolean status;
@@ -17,13 +18,14 @@ public class UserModel extends AbstractModel{
 		
 	}
 
-	public UserModel(long userId, long roleId, String username, String phone, Date birthday, String gender,
+	public UserModel(long userId, long roleId, String username, String phone, String password, Date birthday, String gender,
 			boolean status) {
 		super();
 		this.userId = userId;
 		this.roleId = roleId;
 		this.username = username;
 		this.phone = phone;
+		this.password = password;
 		this.birthday = birthday;
 		this.gender = gender;
 		this.status = status;
@@ -59,6 +61,14 @@ public class UserModel extends AbstractModel{
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+	
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public Date getBirthday() {
