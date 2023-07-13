@@ -2,7 +2,7 @@ package com.minewaku.model;
 
 import java.sql.Timestamp;
 
-public class RoleModel extends AbstractModel{
+public class RoleModel extends AbstractModel<RoleModel> {
 	private long roleId;
 	private String name;
 	

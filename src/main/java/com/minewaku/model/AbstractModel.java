@@ -1,12 +1,16 @@
 package com.minewaku.model;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
-public class AbstractModel {
+public class AbstractModel<T> {
 	private Timestamp createdDate;
 	private Timestamp modifiedDate;
 	private long createdBy ;
 	private long modifiedBy;
+	private long ids[];
+	private List<T> listResult = new ArrayList<>();
 	
 	public AbstractModel() {
 		
@@ -43,6 +47,22 @@ public class AbstractModel {
 	}
 	public void setModifiedBy(long modifiedBy) {
 		this.modifiedBy = modifiedBy;
+	}
+
+	public long[] getIds() {
+		return ids;
+	}
+
+	public void setIds(long ids[]) {
+		this.ids = ids;
+	}
+
+	public List<T> getListResult() {
+		return listResult;
+	}
+
+	public void setListResult(List<T> listResult) {
+		this.listResult = listResult;
 	}
 	
 }

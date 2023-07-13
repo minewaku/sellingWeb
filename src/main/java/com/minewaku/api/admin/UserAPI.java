@@ -26,19 +26,26 @@ public class UserAPI extends HttpServlet {
 		ObjectMapper mapper = new ObjectMapper();
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json");
-		HttpUtil.of(request.getReader());
 		UserModel model = HttpUtil.of(request.getReader()).toModel(UserModel.class);
 		model = userService.save(model);
 		mapper.writeValue(response.getOutputStream(), model);
 	}
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ObjectMapper mapper = new ObjectMapper();
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json");
+		UserModel model = HttpUtil.of(request.getReader()).toModel(UserModel.class);
+		model = userService.update(model);
+		mapper.writeValue(response.getOutputStream(), model);
 	}
-	
-	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
+	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ObjectMapper mapper = new ObjectMapper();
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("application/json");
+		UserModel model = HttpUtil.of(request.getReader()).toModel(UserModel.class);
+		userService.delete(model.getIds());
+		mapper.writeValue(response.getOutputStream(), model);
 	}
-	
 }

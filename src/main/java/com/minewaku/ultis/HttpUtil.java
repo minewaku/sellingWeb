@@ -25,7 +25,7 @@ public class HttpUtil {
 	public static HttpUtil of(BufferedReader reader) {
 		StringBuilder sb = new StringBuilder();
 		try {
-			String line = reader.readLine();
+			String line;
 			while((line = reader.readLine()) != null) {
 				sb.append(line);
 			}

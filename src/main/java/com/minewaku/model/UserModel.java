@@ -2,7 +2,7 @@ package com.minewaku.model;
 
 import java.sql.Date;
 
-public class UserModel extends AbstractModel{
+public class UserModel extends AbstractModel<UserModel> {
 	
 //	missing imageurl for test
 	private long userId;

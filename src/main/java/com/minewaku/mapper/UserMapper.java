@@ -20,9 +20,14 @@ public class UserMapper implements RowMapper<UserModel>{
 			em.setGender(resultSet.getString("gender"));
 			em.setStatus(resultSet.getBoolean("status"));
 			em.setCreatedDate(resultSet.getTimestamp("createdDate"));
-			em.setModifiedDate(resultSet.getTimestamp("modifiedDate"));
 			em.setCreatedBy(resultSet.getLong("createdBy"));
-			em.setModifiedBy(resultSet.getLong("modifiedBy"));
+			if(resultSet.getString("modifiedDate") != null) {
+				em.setModifiedDate(resultSet.getTimestamp("modifiedBy"));
+			}
+			if(resultSet.getTimestamp("modifiedBy") != null) {
+				em.setModifiedBy(resultSet.getLong("modifiedBy"));
+			}
+			
 			return em;
 		} catch(SQLException e) {
 			e.printStackTrace();

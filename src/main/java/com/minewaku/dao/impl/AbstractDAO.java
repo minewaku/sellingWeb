@@ -6,8 +6,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.sql.Timestamp;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,6 +83,8 @@ public class AbstractDAO<T> implements GenericDAO<T>{
 					statement.setDate(index, (Date) parameter);
 				} else if(parameter instanceof Timestamp) {
 					statement.setTimestamp(index, (Timestamp) parameter);
+				} else if(parameter == null) {
+					statement.setNull(index, Types.NULL);
 				}
 			}
 		} catch(SQLException e) {
@@ -90,39 +92,11 @@ public class AbstractDAO<T> implements GenericDAO<T>{
 		}
 	}
 
-	@Override
-	public void update(String sql, Object... parameters) {
-		Connection connection = getConnection();
-		PreparedStatement statement = null;
-		try {
-			connection = getConnection();
-			connection.setAutoCommit(false);
-			statement = connection.prepareStatement(sql);
-			setParameters(statement, parameters);
-			statement.executeUpdate();
-			connection.commit();
-		} catch(SQLException e) {
-			if(connection != null) {
-				try {
-					connection.rollback();
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
-			}
-		} finally {
-			try {
-				if(connection != null) {
-					connection.close();
-				}
-				if(statement != null) {
-					statement.close();
-				}
-			} catch(SQLException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
+	/*
+	 	insert and update are not the same with save, update and delete functions from DAO. The insert is used for save will return id 
+	 while update do not return anything
+	 */
+	
 	@Override
 	public Long insert(String sql, Object... parameters) {
 		Connection connection = getConnection();
@@ -166,5 +140,39 @@ public class AbstractDAO<T> implements GenericDAO<T>{
 			}
 		}
 		return null;
+	}
+	
+	@Override
+	public void update(String sql, Object... parameters) {
+		Connection connection = getConnection();
+		PreparedStatement statement = null;
+		try {
+			connection = getConnection();
+			connection.setAutoCommit(false);
+			statement = connection.prepareStatement(sql);
+			setParameters(statement, parameters);
+			statement.executeUpdate();
+			connection.commit();
+		} catch(SQLException e) {
+			if(connection != null) {
+				try {
+					connection.rollback();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+			e.printStackTrace();
+		} finally {
+			try {
+				if(connection != null) {
+					connection.close();
+				}
+				if(statement != null) {
+					statement.close();
+				}
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }

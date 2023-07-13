@@ -8,4 +8,6 @@ public interface IUserService {
 	List<UserModel> findAll();
 	List<UserModel> findByUserId(Long userId);
 	UserModel save(UserModel model);
+	UserModel update(UserModel model);
+	void delete(long[] ids);
 }

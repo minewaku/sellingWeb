@@ -10,4 +10,5 @@ public interface IUserDAO extends GenericDAO<UserModel> {
 	List<UserModel> findByUserId(long userId);
 	Long save(UserModel model);
 	void update(UserModel model);
+	void delete(long id);
 }
